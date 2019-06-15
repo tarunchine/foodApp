@@ -9,6 +9,5 @@
 6. store
    dataFeched - used to keep track that the data is fetched from server
    isLoading - used to show loader on ui for slow internet
-   books - hold the books (each book has a status field to indentify which category it belongs to)
 
 7. Proptype are not used as of now
