@@ -1,18 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchBooks } from "../../actions/actions";
-import { BookList } from "../BookList";
+import { fetchDishes, searchDish } from "../../actions/actions";
+import CategoryList from "../CategotyList/CategoryList";
+import DishList from "../DishList/DishList";
+import FavDishList from "../FavDishList/FavDishList";
 import { Loader } from "../Loader";
 import "./Home.css";
+
 class Home extends Component {
     componentDidMount() {
         let { dataFetched } = this.props;
         if (!dataFetched) {
-            this.props.getBooks();
+            this.props.getDishes();
         }
     }
+    searchDishes = event => {
+        let searchText = event.target.value || "";
+        console.log("search value", searchText);
+        this.props.searchDish(searchText);
+    };
     render() {
-        let { books = {}, isLoading } = this.props;
+        let {
+            
+            isLoading,
+            searchText
+        } = this.props;
         if (isLoading) {
             return (
                 <div className='page'>
@@ -20,46 +32,51 @@ class Home extends Component {
                 </div>
             );
         }
-        let { wantsToRead = [], currentlyReading = [], read = [] } = books;
         return (
             <div className='page'>
-                <div className='book-shelf'>
-                    <h1>Currently Reading </h1>
-                    <BookList books={currentlyReading} />
+                <div className="main-heading">
+                    <h3>Best Food App</h3>
                 </div>
-                <div className='book-shelf'>
-                    <h1>Wants to Read </h1>
-                    <BookList books={wantsToRead} />
+                <div className="page__content">
+                <FavDishList />
+                <div className='search'>
+                    <input
+                        className='searchField'
+                        type='text'
+                        value={searchText}
+                        onChange={this.searchDishes}
+                        placeholder='Search by Dish Name'
+                    />
                 </div>
-                <div className='book-shelf'>
-                    <h1>Read</h1>
-                    <BookList books={read} />
+                <CategoryList />
+                <DishList />
                 </div>
+                
             </div>
         );
     }
 }
 
 const mapStateToProps = state => {
-    let books = {};
-    state.books.map(book => {
-        let status = book.status;
-        if (books[status]) {
-            books[status].push(book);
-        } else {
-            books[status] = [book];
+    let favDishes = [];
+    state.dishes.map(dish => {
+        if (dish.isFavourite) {
+            favDishes.push(dish);
         }
     });
     return {
-        books,
+        searchText: state.searchText,
         isLoading: state.ui.isLoading,
         dataFetched: state.dataFetched
     };
 };
 const mapDispatchToProps = dispatch => {
     return {
-        getBooks: () => {
-            dispatch(fetchBooks());
+        getDishes: () => {
+            dispatch(fetchDishes());
+        },
+        searchDish: (searchText)=> {
+            dispatch(searchDish(searchText))
         }
     };
 };
@@ -67,3 +84,5 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(Home);
+
+

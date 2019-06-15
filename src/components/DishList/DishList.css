@@ -1,0 +1,52 @@
+
+.dishes__container {
+    display: flex;
+    flex-wrap:  wrap;
+    padding: 20px 0;
+}
+.dish {
+    width: 100%;
+    margin: 0 0px 20px 0;
+    box-shadow: 0 0 9px 1px #dde4ea;
+    cursor: pointer;
+}   
+
+.dish__image img {
+    width: 100%;
+}
+.dish__details {
+    display: flex;
+    padding: 15px;
+}
+.dish__details div:first-child {
+    margin-right: 10px;
+    overflow: hidden;
+    flex: 1;
+}
+.dish__name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media all and (min-width: 500px) {
+    .dish {
+        width: 48%;
+        margin-right: 2%;
+    }
+}
+@media all and (min-width: 768px) {
+    .dish {
+        width: 31.33%;
+    }
+}
+@media all and (min-width: 1024px) {
+    .dish {
+        width: 23%;
+    }
+}
+@media all and (min-width: 1200px) {
+    .dish {
+        width: 18%;
+    }
+}

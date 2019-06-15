@@ -1,12 +1,13 @@
-export function fetchBooks() {
+export function fetchDishes() {
     return dispatch => {
         dispatch(loading(true));
-        return fetch(`https://next.json-generator.com/api/json/get/E1xBCZK0U`)
+        return fetch(`http://temp.dash.zeta.in/food.php`)
             .then(response => response.json())
-            .then(json => {
+            .then(response => {
                 dispatch(loading(false));
-                dispatch(dataFetched(true));
-                return dispatch(booksFetched(json));
+                dispatch(dataFetched(true,));
+                dispatch(dishesFetched(response.recipes));
+                dispatch(categoriesFetched(response.categories));
             });
     };
 }
@@ -17,33 +18,36 @@ function loading(isLoading) {
         isLoading: isLoading
     };
 }
-function dataFetched(isFetched) {
+function dataFetched(isFetched, data) {
     return {
         type: "DATA_FETCHED",
         isFetched: isFetched
     };
 }
-function booksFetched(books) {
+function dishesFetched(dishes) {
     return {
-        type: "BOOKS_FETCHED",
-        books: books
+        type: "DISHES_FETCHED",
+        dishes: dishes
     };
 }
-export function updateBookStatus(id, status) {
+function categoriesFetched(categories) {
     return {
-        type: "UPDATE_STATUS",
-        data: {
-            id: id,
-            status: status
-        }
+        type: "CATAGORIES_FETCHED",
+        categories: categories
     };
 }
-
-export function searchBook(searchText) {
+export function searchDish(searchText) {
     return {
         type: "UPDATE_SEARCHTEXT",
         data: {
             searchText: searchText
         }
     };
+}
+export function updateCategory(categoryName) {
+    console.log('action UPDATE_CATEGORY');
+    return {
+        type: 'UPDATE_CATEGORY',
+        data: categoryName
+    }
 }

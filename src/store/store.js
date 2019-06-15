@@ -8,12 +8,13 @@ var initialState = {
     },
     dataFetched: false,
     searchText: "",
-    books: []
+    categories: [],
+    dishes: []
 };
 const store = createStore(
     rootReducer,
     initialState,
     applyMiddleware(thunkMiddleware)
 );
-
+window.s = store;
 export default store;

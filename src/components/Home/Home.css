@@ -1,7 +1,17 @@
-.book-shelf {
-    margin-bottom: 25px;
+.main-heading {
+    text-align: center;
+    background-color: #228B22;
+    padding: 15px;
+    color: #fff;
+    position: relative;
 }
-.book-shelf h1 {
-    padding: 10px;
-    border-bottom: 1px solid #212529;
+
+.search {
+    margin: 20px 0;
+}
+.search input {
+    font-size: 18px;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
 }

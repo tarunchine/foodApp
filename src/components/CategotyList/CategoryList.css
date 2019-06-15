@@ -1,0 +1,27 @@
+.category.category__selected {
+    border-bottom: 3px solid #248924;
+}
+.categories__container {
+    display: flex;
+    overflow: auto;
+    flex-wrap:  nowrap;
+    margin: 15px 0;
+
+}
+.category {
+    display: flex;
+    align-items: center;
+    border: 1px solid #d7d7d7;
+    padding: 5px 13px;
+    margin-right: 20px;
+    border-radius: 4px;
+    flex: 0 0 auto;
+    cursor: pointer;
+}
+.category__image {
+    width: 30px;
+    margin-right: 10px;
+}
+.category__image img {
+    width: 100%;
+}

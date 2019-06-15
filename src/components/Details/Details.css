@@ -1,0 +1,32 @@
+.back-arrow {
+    display: inline-block;
+    font-size: 35px;
+    position: absolute;
+    left: 15px;
+    top: 5px;
+    cursor: pointer;
+}
+.dish__description_name, .dish__description_price {
+    padding: 15px 0; 
+    font-weight: bold;
+}
+
+.dish__description__category {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-top: 1px solid #d7d7d7;
+    margin-top: 30px;
+}
+.dish__description__summary h3 {
+    padding: 20px 0;
+}
+
+@media all and (min-width: 769px) {
+    .dish__description {
+        display: flex;
+    }
+    .dish__description__image {
+        margin-right: 20px;
+    }
+}
